@@ -68,7 +68,7 @@ export class Slide {
     this.wrapper.addEventListener('touchend', this.onEnd);
   }
 
-  // Slides Config
+  // ------------- SLIDES CONFIG ------------- //
 
   slidePosition(slide) {
     const margin = (this.wrapper.offsetWidth - slide.offsetWidth) / 2;
@@ -88,7 +88,7 @@ export class Slide {
       prev: index ? index - 1 : undefined,
       active: index,
       next: (index === last) ? undefined : index + 1,
-    }
+    };
   }
 
   changeSlide(index) {
@@ -150,7 +150,7 @@ export class Slide {
   }
 }
 
-export class SlideNav extends Slide {
+export default class SlideNav extends Slide {
   constructor(slide, wrapper) {
     super(slide, wrapper);
     this.bindControlEvents();
@@ -174,6 +174,7 @@ export class SlideNav extends Slide {
     this.slideArray.forEach((item, index) => {
       control.innerHTML += `<li><a href="#slide${index + 1}">${index}</a></li>`;
     });
+
     this.wrapper.appendChild(control);
     return control;
   }
@@ -183,6 +184,7 @@ export class SlideNav extends Slide {
       event.preventDefault();
       this.changeSlide(index);
     });
+
     this.wrapper.addEventListener('changeEvent', this.activeControlItem);
   }
 
